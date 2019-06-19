@@ -1,3 +1,4 @@
+
 from pyse import Pyse, TestCase, TestRunner
 from parameterized import parameterized
 import os
@@ -14,45 +15,37 @@ class Test(TestCase):
 
 
     def login(self):
-        self.open("https://192.168.0.238")
+        self.open("https://www.ctrip.com/")
         self.max_window()
         self.sleep(5)
-        self.type("id=>accountName","2@2")
-        self.type("id=>password","2WXeRM")
-        self.sleep(2)
-        self.click("xpath=>//*[@id='loginform']/fieldset/div[3]/button")
+        self.click("xpath=> //*[@id='nav-bar-set-login']/a/span/span")
+        self.type("id=>nloginname","15726626806")
+        self.type("id=>npwd","13148023l")
         self.sleep(5)
-    #上传更新包
+        self.click("id=>nsubmit")
+    #火车票
     def test_AssetManagement(self):
         Test.login(self)
-        self.click("link_text=>资产管理")
-        self.click("link_text=>终端部署")
-        self.sleep(5)
-        self.click("id=>btnUpdate")
+        self.click("id=>nav_trains")
+#        self.click("link_text=>资产管理")
+ #       self.click("link_text=
+        self.clear("id=>notice01")
+        self.type("id=>notice01","北京")
         self.sleep(2)
-        self.click("id=>chooseUpdatefile")
-        self.sleep(5)
-        os.system(r'E:\明镜.exe "E:\LongBright-V2.1.0 B30.zip"')
+        self.clear("id=>notice02")
+        self.type("id=>notice02","邯郸")
         self.sleep(2)
-        self.click("id=>Updateadd")
+        js = "document.getElementById('dateObj').removeAttribute('readonly')"#去掉readonly
+        self.datainpt(js)
+        self.clear("id=>dateObj")
         self.sleep(5)
-        self.click("link_text=>确定")
+        js2 = "document.getElementById('dateObj').value='2019-12-25'"
+        self.datainpt(js2)
+        self.sleep(2)
+        self.click("id=>searchbtn")
         self.sleep(5)
-      #  self.close()
-
-    def test_TaskManagement(self):
-       # Test.login(self)
-        self.click("link_text=>任务管理")
-        self.click("link_text=>补丁任务")
-        self.sleep(5)
-        self.click("id=>btnAdd")
-        self.sleep(5)
-        self.click("id=>strategySelecting")
-
-
-
-if __name__ == '__main__':
-    runner = TestRunner('./', '明镜测试', '测试环境：Chrome')
+if __name__ == '__min__':
+    runner = TestRunner('./', '携程网站', '测试环境：Chrome')
     runner.run()
 
 '''

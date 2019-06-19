@@ -396,3 +396,6 @@ class WebDriver(object):
         sleep(seconds)
         """
         time.sleep(sec)
+    def datainpt(self,js):
+        #这个方法主要是去掉日历选项的readonly
+        self.driver.execute_script(js)
