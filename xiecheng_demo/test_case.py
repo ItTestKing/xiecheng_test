@@ -31,9 +31,11 @@ class Test(TestCase):
  #       self.click("link_text=
         self.clear("id=>notice01")
         self.type("id=>notice01","北京")
-        self.sleep(2)
-        self.clear("id=>notice02")
-        self.type("id=>notice02","邯郸")
+        jsauto = "document.getElementById('notice01').removeAttribute('autocomplete')"
+        self.js(jsauto)
+        self.sleep(5)
+        self.clear("id=>notice08")
+        self.type("id=>notice08","邯郸")
         self.sleep(2)
         js = "document.getElementById('dateObj').removeAttribute('readonly')"#去掉readonly
         self.datainpt(js)
