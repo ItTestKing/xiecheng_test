@@ -24,7 +24,7 @@ class Test(TestCase):
         self.sleep(5)
         self.click("id=>nsubmit")
     #火车票
-    def test_AssetManagement(self):
+    def test_SearchTran(self):
         Test.login(self)
         self.click("id=>nav_trains")
 #        self.click("link_text=>资产管理")
@@ -41,11 +41,17 @@ class Test(TestCase):
         self.datainpt(js)
         self.clear("id=>dateObj")
         self.sleep(5)
-        js2 = "document.getElementById('dateObj').value='2019-12-25'"
+        js2 = "document.getElementById('dateObj').value='2019-6-25'"
         self.datainpt(js2)
         self.sleep(2)
         self.click("id=>searchbtn")
-        self.sleep(5)
+        self.sleep(20)
+    def test_SearchHotel(self):
+        Test.login(self)
+        self.click("id=>nav_ticket")
+        self.sleep(3)
+        self.type("css=>main_search_txt main_search_cur","山东")
+        self.click("link_text=>搜索")
 if __name__ == '__min__':
     runner = TestRunner('./', '携程网站', '测试环境：Chrome')
     runner.run()
